@@ -14,6 +14,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /monitor-network
 FROM build-stage AS run-test-stage
 RUN go test -v ./...
 
+
 # Deploy the application binary into a lean image
 FROM debian:latest AS build-release-stage
 
