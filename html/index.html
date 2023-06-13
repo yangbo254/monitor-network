@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>Untitled</title>
+    <script src="
+    https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js
+    "></script>
+    
+  </head>
+  <body>
+    <div style="width: 800px;"><canvas id="acquisitions"></canvas></div>
+	<script>
+         const data = [
+    { t: "00:00", CN: 10 },
+    { t: "00:30", CN: 20 },
+    { t: "01:00", CN: 15 },
+    { t: "01:30", CN: 25 },
+    { t: "02:00", CN: 22 },
+    { t: "02:30", CN: 30 },
+    { t: "03:00", CN: 28 },
+  ];
+        var myLineChart = new Chart(document.getElementById('acquisitions'), {
+    type: "line",
+    data: {
+        labels: data.map(row => row.t),
+        datasets: [
+        {
+            label: 'CN',
+            data: data.map(row => row.CN)
+          }
+        ]
+      },
+    options: {}
+});
+    </script>
+  </body>
+</html>
