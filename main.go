@@ -72,6 +72,7 @@ func reportInit() {
 func report(src, cn, hk, us string) {
 	callBack := &Callback{}
 	log := producer.GenerateLog(uint32(time.Now().Unix()), map[string]string{"CN": cn, "HK": hk, "US": us})
+	fmt.Println(log.GetContents())
 	_ = producerInstance.SendLogWithCallBack(os.Getenv("Project"), os.Getenv("Logstore"), "topic", src, log, callBack)
 	// if err != nil {
 	// 	fmt.Println(err)
