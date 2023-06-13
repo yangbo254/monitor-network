@@ -141,7 +141,7 @@ func main() {
 			report(Host, strconv.FormatInt(elapsedCN, 10), strconv.FormatInt(elapsedHK, 10), strconv.FormatInt(elapsedUS, 10))
 		}
 
-		time.Sleep(time.Millisecond * 30 * 1000)
+		time.Sleep(time.Millisecond * 15 * 1000)
 	}
 
 }
