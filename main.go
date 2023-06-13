@@ -116,6 +116,7 @@ func main() {
 			if elapsed, err := httpGetUseHttpProxy(descCN, proxyUrl); err == nil {
 				return elapsed
 			} else {
+				fmt.Println(err)
 				return 0
 			}
 		}
