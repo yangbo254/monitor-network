@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        docker build . --file Dockerfile --tag monitornetwork:latest
+        docker login -u ${{ secrets.DOCKER_IO_ACCESS }} -p ${{ secrets.DOCKER_IO_ACCESS_TOKEN }}
+        docker tag monitornetwork:latest piseth169k/monitornetwork:latest
+        docker push piseth169k/monitornetwork:latest
