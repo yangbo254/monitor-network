@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"flag"
 	"fmt"
 	"net/http"
@@ -22,7 +23,8 @@ func httpGetUseHttpProxy(descUrl string, uri *url.URL) (int64, error) {
 
 	client := http.Client{
 		Transport: &http.Transport{
-			Proxy: http.ProxyURL(uri),
+			Proxy:           http.ProxyURL(uri),
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 		},
 	}
 	start := time.Now()
@@ -113,7 +115,7 @@ func main() {
 		}
 
 		funcCheck := func(desc string, proxyUrl *url.URL) int64 {
-			if elapsed, err := httpGetUseHttpProxy(descCN, proxyUrl); err == nil {
+			if elapsed, err := httpGetUseHttpProxy(desc, proxyUrl); err == nil {
 				return elapsed
 			} else {
 				fmt.Println(err)
