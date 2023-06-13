@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  watchtower:
+    image: containrrr/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_POLL_INTERVAL=120
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  monitornetwork:
+    image: piseth169k/monitornetwork:latest
+    restart: always
+    env_file: .env
+    network_mode: "host"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
